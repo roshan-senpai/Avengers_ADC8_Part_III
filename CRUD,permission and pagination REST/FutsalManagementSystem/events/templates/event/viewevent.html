@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View Events</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/viewevent.css' %}">
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    
+    {% if user.is_authenticated %}
+    <br>
+    <div><a href="../searchdata/" class="btn btn-primary btn-lg btn-block">Search Event</a></div>
+    <div class="container mt-5">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    
+                    <td>Event's ID</td> 
+                    <td>Event's Name </td>  
+                    <td>Event's venue</td>   
+                    <td>Event Date</td>  
+                    <td>Event Manager</td> 
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for events in events %}
+                    <tr>
+                        <td>{{events.id}}</td>
+                        <td>{{events.event_name}}</td>
+                        <td>{{events.venue}}</td>
+                        <td>{{events.event_date}}</td>
+                        <td>{{events.manager}}</td>
+                        <td><a href="delete/{{events.id}}" class="btn btn-dark">Delete this event</a></td>
+                        <td><a href="../eventdataform/{{events.id}}" class="btn btn-dark">Update this event</a></td>
+                    </tr>
+                    
+                {% empty %}
+                    There are no Events.
+                {% endfor %}
+            </tbody>    
+        </table>    
+    </div><br>
+    
+    <a href="../eventform" class="btn btn-primary" id="registere">Register Event</a>
+    <a href="../../login_signup/logout/" class="btn btn-secondary">Logout</a>
+    
+    {% else %}
+         You are not Logged in..Please Try Logging in again
+    {% endif %}
+</body>
+</html>

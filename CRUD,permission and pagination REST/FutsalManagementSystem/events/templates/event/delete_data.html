@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Delete Event</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <form method='POST' action="deletes">
+
+        <div class="container mt-5">
+            <table class="table">
+                <thead>These datas are deleted</thead>
+                <thead class="thead-dark">
+                    <tr>
+                        <td>Event's ID</td> 
+                        <td>Event's Name </td>  
+                        <td>Event's venue</td>   
+                        <td>Event Date</td>  
+                        <td>Event Manager</td>   
+                    </tr>
+                </thead>
+                <tbody>
+                    {% csrf_token %}
+                    <tr>
+                        <td>{{event.id}}</td>
+                        <td>{{event.event_name}}</td>
+                        <td>{{event.venue}}</td>
+                        <td>{{event.event_date}}</td>
+                        <td>{{event.manager}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>  
+    </form>
+</body>
+</html>

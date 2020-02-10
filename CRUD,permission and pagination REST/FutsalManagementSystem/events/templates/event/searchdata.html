@@ -1,0 +1,30 @@
+<!-- html page for displaying data from database  -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>List of Searched Events</title>
+</head>
+<body>
+    <form method="POST"  ><br><br>
+        {% csrf_token %}
+        <input type="text" placeholder="Enter Event's Name" name="srh"><br><br>
+        <button class="btn btn-primary">Submit</button><br><br>
+        
+        {% for e in event %} 
+           <p>Event's Name : {{e.event_name}} </p><br><br>
+           <p>Event's Venue : {{e.venue}}</p> <br><br>
+           <p>Event's Date: {{e.event_date}}</p><br><br>
+           <p>Event's Manager: {{e.manager}}</p><br><br>
+                 
+        ======================================== <br>
+        {% empty %}
+           <p>Enter Event name to search.</p>
+        {% endfor %}
+    </form> 
+</body>
+</html>

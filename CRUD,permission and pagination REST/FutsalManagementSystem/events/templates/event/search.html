@@ -1,0 +1,47 @@
+<!-- html page for displaying data from database  -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>List of Searched Events</title>
+</head>
+<body>
+    <form method="POST"  ><br><br>
+        {% csrf_token %}
+        <div>
+        <input type="text" placeholder="Enter Event's Name" name="srh"><br><br>
+        <button class="btn btn-primary">Submit</button><br><br>
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    
+                    <td>Event's ID</td> 
+                    <td>Event's Name </td>  
+                    <td>Event's venue</td>   
+                    <td>Event Date</td>  
+                    <td>Event Manager</td> 
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in sr %}
+                    <tr>
+                        <td>{{e.id}}</td>
+                        <td>{{e.event_name}}</td>
+                        <td>{{e.venue}}</td>
+                        <td>{{e.event_date}}</td>
+                        <td>{{e.manager}}</td>
+                    </tr>
+                    
+                {% empty %}
+                    There are no Events.
+                {% endfor %}
+            </tbody>
+    </form> 
+</body>
+</html>
