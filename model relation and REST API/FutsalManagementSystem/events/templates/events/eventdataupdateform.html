@@ -1,0 +1,26 @@
+<!-- html page for updating data in database -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Update Event Form </title>
+</head>
+<body>
+    <section class="container-fluid">
+        <section>
+            <form method="POST" action="update/{{event.id}}" >
+                {% csrf_token %} 
+                Update Event Name: <input name="event_name" type="text" value ={{event.event_name}}> <br>
+                Update Venue: <input name="venue" type="text" value={{event.venue}}> <br>
+                Update Event Date: <input name="event_date" type="text" value={{event.event_date}}> <br>
+                Update Manager: <input name="manager" type="text" value={{event.manager}}> <br>
+                <button class="btn btn-primary">Submit</button><br><br>
+            </form>
+        </section>
+    </section>
+</body>
+</html>
